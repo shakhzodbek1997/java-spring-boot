@@ -1,7 +1,9 @@
 package com.in28minutes.springfreamwork;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 // Eliminate verbosity in creating Java Beans
 // Public accessor methods, constructor,
@@ -36,11 +38,18 @@ public class HelloWorldConfiguration {
         return new Person(name, age, address2);
     }
 
+    @Bean
+    public Person person5QualifierAddress(String name, int age, @Qualifier("address2Qualifier") Address address){
+        return new Person(name, age, address);
+    }
+
     @Bean(name = "address")
+    @Primary
     public Address manzil(){
         return new Address("Marki", "Warsaw");
     }
     @Bean
+    @Qualifier("address2Qualifier")
     public Address address2(){
         return new Address("Chilonzor", "Yangi O'zbekiston");
     }
