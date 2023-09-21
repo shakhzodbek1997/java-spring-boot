@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 // Public accessor methods, constructor,
 // equals, hashcode and toString are automatically created.
 // Released in JDK 16.
-record Person (String name, int age) { };
-record Address (String firstLine, String city) { };
+record Person (String name, int age, Address manzili) { }
+record Address (String firstLine, String city) { }
 @Configuration
 
 public class HelloWorldConfiguration {
@@ -23,11 +23,25 @@ public class HelloWorldConfiguration {
     }
     @Bean
     public Person personcha(){
-        return new Person("valijon" ,17);
+        return new Person("valijon" ,17, new Address("Shovot", "xorazm"));
     }
 
     @Bean
+    public Person personcha2MethodCall(){
+        return new Person(name(), age(), manzil()); //calling other methods: name and age
+    }
+
+    @Bean
+    public Person personcha3Param(String name, int age, Address address2){
+        return new Person(name, age, address2);
+    }
+
+    @Bean(name = "address")
     public Address manzil(){
         return new Address("Marki", "Warsaw");
+    }
+    @Bean
+    public Address address2(){
+        return new Address("Chilonzor", "Yangi O'zbekiston");
     }
 }
