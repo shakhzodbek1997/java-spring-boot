@@ -1,8 +1,6 @@
-package com.in28minutes.springfreamwork;
+package com.in28minutes.springfreamwork.helloWorld;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Arrays;
 
 public class App02HelloWorldSpring {
 	public static void main(String[] args) {
